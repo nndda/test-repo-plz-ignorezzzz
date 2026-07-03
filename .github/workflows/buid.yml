@@ -1,0 +1,43 @@
+name: Build Godot project
+
+on:
+  push:
+    paths:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Godot project
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Android
+          - target: android
+            arch: arm32-arm64
+
+          # Linux
+          - target: linuxbsd
+            arch: x86_64
+
+          # Windows
+          - target: windows
+            arch: x86_64
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - name: Build Godot project
+        uses: nndda/gd-build@4.7-stable
+        with:
+          target: ${{ matrix.target }}
+          arch: ${{ matrix.arch }}
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: export-template-${{ matrix.target }}-${{ matrix.arch }}
+          path: ${{ github.workspace }}/${{ matrix.target }}-${{ matrix.arch }}.7z
