@@ -2,6 +2,8 @@ name: Build Godot project
 
 on:
   push:
+    branches:
+      - main
     paths:
       - '*'
   workflow_dispatch:
