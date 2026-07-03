@@ -35,7 +35,6 @@ jobs:
         with:
           target: ${{ matrix.target }}
           arch: ${{ matrix.arch }}
-          godot-version: 4.7-stable
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v6
