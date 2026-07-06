@@ -16,17 +16,17 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Android
-          - target: android
-            arch: arm32-arm64
+          # # Android
+          # - target: android
+          #   arch: arm32-arm64
 
           # Linux
           - target: linuxbsd
             arch: x86_64
 
-          # Windows
-          - target: windows
-            arch: x86_64
+          # # Windows
+          # - target: windows
+          #   arch: x86_64
 
     runs-on: ubuntu-latest
 
